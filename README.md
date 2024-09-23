@@ -1,3 +1,1 @@
-# varjodev.github.io
-
-## Projects
+# Projects
