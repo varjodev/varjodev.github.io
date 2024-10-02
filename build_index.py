@@ -1,6 +1,25 @@
 import json
 import webbrowser
 
+def embed_media(project_data):
+    s = ""
+    if project_data["media_type"] == "video":
+        s += "<div class='ratio ratio-1x1'>"
+        s += f"<iframe src='{project_data['media_source']}' allowfullscreen></iframe>"
+        s += "</div>"
+        
+    elif project_data["media_type"] == "image":
+        s += f"<img src='{project_data['media_source']}' class='img-fluid'>"
+
+    elif project_data["media_type"] == "code":
+        s += "<div class='container border bg-dark text-white p-3'>"
+        s += project_data["media_source"]
+        s += "</div>"
+
+    s += f"<p>{project_data['media_caption']}</p>"
+
+    return s
+
 def generate_tags(tags):
     s = "<p class='tags'>"
     for tag in tags:
@@ -28,19 +47,7 @@ def generate_main_project(project_data):
 
     # Media content
     s += "<div class='col-5'>"
-    if project_data["media_type"] == "video":
-        s += "<div class='ratio ratio-1x1'>"
-        s += f"<iframe src='{project_data['media_source']}' allowfullscreen></iframe>"
-        s += "</div>"
-    elif project_data["media_type"] == "image":
-        s += f"<img src='{project_data['media_source']}' class='img-fluid'>"
-
-    elif project_data["media_type"] == "code":
-        s += "<div class='container border bg-dark text-white p-3'>"
-        s += project_data["media_source"]
-        s += "</div>"
-
-    s += f"<p>{project_data['media_caption']}</p>"
+    s += embed_media(project_data)
     s += "</div></div><hr/></div>"
     return s
 
@@ -116,13 +123,14 @@ html += "<p>(more details can be provided on request)</p></div>"
 
 for i, project_name in enumerate(content["misc_projects"]):
     if i % 2 == 0:
-        html += "<div class='row'>"
+        html += "<div class='row mb-3'>"
         html += generate_misc_project(content["misc_projects"][project_name])
         html += "<div class='col-1'></div>"
         
     else:
         html += generate_misc_project(content["misc_projects"][project_name])
         html += "</div>"
+        html += "<hr/>"
         
 
 if i % 2 == 0:
@@ -132,6 +140,28 @@ html += "</div>"
 html += "</div>"
 
 # TODO: Add misc gallery
+html += generate_content_page()
+html += "<div class='row-fluid m-3'><div class='row mb-3'>"
+html += "<h3> Misc gallery </h3>"
+html += "</div>"
+for i, project_data in enumerate(content["media_gallery"]):
+    if i % 2 == 0:
+        html += "<div class='row'>"
+        html += "<div class='col-5'>"
+        html += embed_media(project_data)
+        html += "</div>"
+        html += "<div class='col-1'></div>"
+        
+    else:
+        html += "<div class='col-5'>"
+        html += embed_media(project_data)
+        html += "</div>"
+
+if i % 2 == 0:
+    html += "</div>"
+
+html += "</div>"
+html += "</div>"
 
 # Bootstrap script
 html += "<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz' crossorigin='anonymous'></script>"
