@@ -118,7 +118,7 @@ html += "</div>"
 # Generate misc projects
 html += generate_content_page()
 html += "<div class='row-fluid m-3'><div class='row mb-3'>"
-html += "<h3> Miscellanous projects and work </h3>"
+html += "<h3> Other projects and work </h3>"
 html += "<p>(more details can be provided on request)</p></div>"
 
 for i, project_name in enumerate(content["misc_projects"]):
@@ -146,7 +146,7 @@ html += "<h3> Misc gallery </h3>"
 html += "</div>"
 for i, project_data in enumerate(content["media_gallery"]):
     if i % 2 == 0:
-        html += "<div class='row'>"
+        html += "<div class='row mb-3'>"
         html += "<div class='col-5'>"
         html += embed_media(project_data)
         html += "</div>"
@@ -156,6 +156,7 @@ for i, project_data in enumerate(content["media_gallery"]):
         html += "<div class='col-5'>"
         html += embed_media(project_data)
         html += "</div>"
+        html += "<hr/>"
 
 if i % 2 == 0:
     html += "</div>"
