@@ -75,7 +75,7 @@ def generate_filter_buttons():
 def generate_navbar():
     s = ""
     s += "<nav class='navbar navbar-expand-sm bg-dark navbar-dark fixed-top'>"
-    s += "<div class='container-fluid'><a class='navbar-brand' href='#'>Projects page</a><ul class='navbar-nav'>"
+    s += "<div class='container-fluid'><a class='navbar-brand' href='https://github.com/varjodev/varjodev.github.io'>Projects page</a><ul class='navbar-nav'>"
     s += generate_filter_buttons()
     s += "</ul></div></nav>"
     return s
