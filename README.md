@@ -13,4 +13,4 @@ Mp4 video files are large, while the mkv container might not be supported by all
 Some page visitors might be interested in project in a specific area, so it is convenient to be able to filter the projects. Javascript can be supplied directly with the html, so it felt the most convenient option to use.
 
 ### Todo:
-- Change site language to Japanese
+- Option to change site language to Japanese with javascript
