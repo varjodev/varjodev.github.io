@@ -65,7 +65,7 @@ def generate_content_page():
 
 def generate_filter_buttons():
     s = ""
-    for i, tag in enumerate(['ALL', 'IMAGE', 'AUDIO', 'WEB', 'EMBEDDED']):
+    for i, tag in enumerate(['ALL', 'IMAGE', 'AUDIO', 'WEB', 'MICROCONTROLLERS']):
         btn_type = "primary" if i == 0 else "secondary"
         s += f'<button type="button" class="btn btn-{btn_type} mx-1 filter-btn" value="{tag}" onclick="projectFilter('
         s += f"'{tag}')"
@@ -192,7 +192,6 @@ html += """<script>
                     }
                 }
                 btns = document.getElementsByClassName("filter-btn");
-                console.log(btns);
                 for (i = 0; i < btns.length; i++){
                     if (btns[i].value == filter_tag){
                     btns[i].classList.remove("btn-secondary");
